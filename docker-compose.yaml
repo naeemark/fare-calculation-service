@@ -1,0 +1,8 @@
+version: '3'
+services:
+  fare-calculation-service:
+    image: fare-calculation-service
+    container_name: fare-calculation-service
+    build:
+      context: ./
+      dockerfile: Dockerfile
