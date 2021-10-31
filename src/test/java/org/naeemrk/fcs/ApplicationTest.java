@@ -1,5 +1,6 @@
 package org.naeemrk.fcs;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 class ApplicationTest {
 
     @Test
+    @DisplayName("Main Method")
     void main() {
         // stub invocation of main method
         Application.main(new String[]{});
