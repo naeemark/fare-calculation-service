@@ -27,4 +27,5 @@ WORKDIR /app
 COPY --from=builder /build/target/fare-calculation-service-1.0.jar app.jar
 
 # Run App
-ENTRYPOINT ["java", "-Xms512m", "-Xmx4g", "-jar", "app.jar"]
+# Commented to control execution from docerk-compose.yaml
+#ENTRYPOINT ["java", "-Xms512m", "-Xmx4g", "-jar", "app.jar"]
