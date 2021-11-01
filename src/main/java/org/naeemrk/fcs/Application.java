@@ -1,7 +1,10 @@
 package org.naeemrk.fcs;
 
+import org.naeemrk.fcs.models.Location;
 import org.naeemrk.fcs.services.ingestion.IngestionService;
 import org.naeemrk.fcs.services.ingestion.IngestionServiceImpl;
+
+import java.util.List;
 
 /**
  * @author Naeem <naeemark@gmail.com>
@@ -9,9 +12,9 @@ import org.naeemrk.fcs.services.ingestion.IngestionServiceImpl;
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("Hello World...");
 
         IngestionService ingestionService = new IngestionServiceImpl();
-        ingestionService.read("fileName");
+        List<Location> locationList = ingestionService.read("src/main/resources/data/paths.csv");
+        System.out.printf("Size: %d", locationList.size());
     }
 }
