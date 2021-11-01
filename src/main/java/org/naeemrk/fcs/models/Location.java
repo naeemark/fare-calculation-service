@@ -1,9 +1,6 @@
 package org.naeemrk.fcs.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author Naeem <naeemark@gmail.com>
@@ -14,5 +11,15 @@ public class Location {
     private long rideId;
     private double latitude;
     private double longitude;
-    private long timestamp;
+    private long epochTimestamp;
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "rideId=" + rideId +
+                ", lat=" + latitude +
+                ", long=" + longitude +
+                ", time=" + epochTimestamp +
+                '}';
+    }
 }
