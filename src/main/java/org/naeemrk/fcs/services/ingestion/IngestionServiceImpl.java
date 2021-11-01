@@ -41,9 +41,9 @@ public class IngestionServiceImpl implements IngestionService {
                 long rideId = Long.parseLong(record.get(0));
                 double latitude = Double.parseDouble(record.get(1));
                 double longitude = Double.parseDouble(record.get(2));
-                long timestamp = Long.parseLong(record.get(3));
+                long epochTimestamp = Long.parseLong(record.get(3));
 
-                Location person = new Location(rideId, latitude, longitude, timestamp);
+                Location person = new Location(rideId, latitude, longitude, epochTimestamp);
                 list.add(person);
             }
         } catch (IOException e) {
