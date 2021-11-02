@@ -6,4 +6,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    command: java -Xms512m -Xmx4g -jar app.jar
+    volumes:
+      - ${PWD}/data/paths.csv:/data/paths.csv
+    command: java -Xms512m -Xmx4g -jar app.jar '/data/paths.csv'

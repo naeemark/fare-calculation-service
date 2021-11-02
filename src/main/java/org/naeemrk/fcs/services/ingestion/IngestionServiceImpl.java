@@ -10,9 +10,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Naeem <naeemark@gmail.com>
@@ -25,7 +24,7 @@ public class IngestionServiceImpl implements IngestionService {
         // Validates if the file exists
         File file = new File(filePath);
         if (!file.exists() || file.isDirectory()) {
-            throw new IllegalArgumentException("Provided file path is not valid");
+            throw new IllegalArgumentException("Provided file path is not valid: " + filePath);
         }
 
         Path path = Paths.get(filePath);
@@ -50,5 +49,18 @@ public class IngestionServiceImpl implements IngestionService {
             e.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public List<List<Location>> split(List<Location> locationList) {
+        Map<Long, List<Location>> map = new HashMap<>();
+        locationList.forEach(e -> {
+            long rideId = e.getRideId();
+            if (!map.containsKey(rideId)) {
+                map.put(rideId, new ArrayList<>());
+            }
+            map.get(rideId).add(e);
+        });
+        return new ArrayList<>(map.values());
     }
 }

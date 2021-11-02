@@ -1,29 +1,33 @@
 package org.naeemrk.fcs.utils;
 
-import javafx.util.Pair;
-
 /**
  * @author Naeem <naeemark@gmail.com>
  */
-public class HaversineUtil {
+public class SpeedUtil {
 
-    /**
-     * Calculates and return between to pairs of Latitude and longitude in KM
-     *
-     * @param current Pair of latitude, longitude
-     * @param next Pair of latitude, longitude
-     * @return double
-     */
-    public static double haversine(Pair<Double, Double> current, Pair<Double, Double> next) {
-        return haversine(current.getKey(), current.getValue(), next.getKey(), next.getValue());
+    public static double calculateSpeed(long currentTimestamp, long lastTimestamp, double distanceInKm) {
+        long seconds = currentTimestamp - lastTimestamp;
+        double distanceInMeters = distanceInKm * 1000;
+        return 3.6 * (distanceInMeters / seconds);
     }
 
     /**
-     * Calculates and return between to pairs of Latitude and longitude in KM
+     * Calculates and returns distance between to pairs of Latitude and longitude in KM
      *
-     * @param latitudeA double
+     * @param from Pair of latitude, longitude
+     * @param to Pair of latitude, longitude
+     * @return double
+     */
+    public static double haversine(double[] from, double[] to) {
+        return haversine(from[0], from[1], to[0], to[1]);
+    }
+
+    /**
+     * Calculates and returns distance between to pairs of Latitude and longitude in KM
+     *
+     * @param latitudeA  double
      * @param longitudeA double
-     * @param latitudeB double
+     * @param latitudeB  double
      * @param longitudeB double
      * @return double
      */

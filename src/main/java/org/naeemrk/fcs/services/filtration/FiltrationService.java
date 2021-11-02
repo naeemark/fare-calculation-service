@@ -1,4 +1,4 @@
-package org.naeemrk.fcs.services.filteration;
+package org.naeemrk.fcs.services.filtration;
 
 import org.naeemrk.fcs.common.Service;
 import org.naeemrk.fcs.models.Location;
@@ -9,6 +9,7 @@ import java.util.List;
  * @author Naeem <naeemark@gmail.com>
  */
 public interface FiltrationService extends Service {
-    boolean isValid(Location location);
-    List<Location> sanitize(List<Location> locationList);
+    void sanitize(List<Location> locationList);
+
+    double calculateSpeed(Location currentLocation, Location lastLocation);
 }

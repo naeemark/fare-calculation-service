@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface IngestionService extends Service {
     List<Location> read(String filePath);
+
+    List<List<Location>> split(List<Location> locationList);
 }
