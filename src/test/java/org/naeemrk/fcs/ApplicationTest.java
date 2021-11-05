@@ -8,10 +8,12 @@ import org.junit.jupiter.api.Test;
  */
 class ApplicationTest {
 
+    private final String filePath = "src/test/resources/data/paths.csv";
+
     @Test
     @DisplayName("Main Method")
     void main() {
-        // stub invocation of main method
-        Application.main(new String[]{});
+        String[] args = {filePath};
+        Application.main(args);
     }
 }
