@@ -1,14 +1,22 @@
 package org.naeemrk.fcs.utils;
 
+import java.text.DecimalFormat;
+
 /**
  * @author Naeem <naeemark@gmail.com>
  */
 public class SpeedUtil {
 
-    public static double calculateSpeed(long currentTimestamp, long lastTimestamp, double distanceInKm) {
-        long seconds = currentTimestamp - lastTimestamp;
+    /**
+     * Calculates km/hour
+     *
+     * @param duration Seconds
+     * @param distanceInKm for current Location Object
+     * @return km/h
+     */
+    public static double calculateSpeed(long duration, double distanceInKm) {
         double distanceInMeters = distanceInKm * 1000;
-        return 3.6 * (distanceInMeters / seconds);
+        return 3.6 * (distanceInMeters / duration);
     }
 
     /**
