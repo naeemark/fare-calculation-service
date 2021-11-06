@@ -11,5 +11,5 @@ import java.util.List;
 public interface FiltrationService extends Service {
     void sanitize(List<Location> locationList);
 
-    double calculateSpeed(Location currentLocation, Location lastLocation);
+    void setCurrentSpeed(Location currentLocation, Location lastLocation);
 }

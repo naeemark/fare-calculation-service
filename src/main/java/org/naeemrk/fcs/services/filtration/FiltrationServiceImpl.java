@@ -22,8 +22,8 @@ public class FiltrationServiceImpl implements FiltrationService {
             Location currentLocation = locationList.get(i);
             Location lastLocation = locationList.get(i - 1);
 
-            double speed = calculateSpeed(currentLocation, lastLocation);
-            currentLocation.setSpeedKmPerHour(speed);
+            currentLocation.setDuration(currentLocation.getEpochTimestamp() - lastLocation.getEpochTimestamp());
+            setCurrentSpeed(currentLocation, lastLocation);
 
             if (!currentLocation.isValid()) {
                 locationList.remove(currentLocation);
@@ -35,14 +35,14 @@ public class FiltrationServiceImpl implements FiltrationService {
     }
 
     @Override
-    public double calculateSpeed(Location currentLocation, Location lastLocation) {
+    public void setCurrentSpeed(Location currentLocation, Location lastLocation) {
         double[] current = {currentLocation.getLatitude(), currentLocation.getLongitude()};
         double[] last = {lastLocation.getLatitude(), lastLocation.getLongitude()};
 
         double distanceInKm = SpeedUtil.haversine(last, current);
-        double kmPerHour = SpeedUtil.calculateSpeed(currentLocation.getEpochTimestamp(), lastLocation.getEpochTimestamp(), distanceInKm);
-        logger.info("Current {}, Last {}, km:{} time:{}s km/h:{}", currentLocation, lastLocation, distanceInKm, (currentLocation.getEpochTimestamp() - lastLocation.getEpochTimestamp()), kmPerHour);
-        return kmPerHour;
-    }
+        double kmPerHour = SpeedUtil.calculateSpeed(currentLocation.getDuration(), distanceInKm);
+        logger.info("Current {}, Last {}, km:{} km/h:{}", currentLocation, lastLocation, distanceInKm, kmPerHour);
 
+        currentLocation.setSpeedKmPerHour(kmPerHour);
+    }
 }

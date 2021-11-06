@@ -2,8 +2,7 @@ package org.naeemrk.fcs.models;
 
 import lombok.Data;
 
-import static org.naeemrk.fcs.common.Constants.ALLOWED_MAX_KM_PER_HOUR;
-import static org.naeemrk.fcs.common.Constants.MIN_KM_PER_HOUR;
+import static org.naeemrk.fcs.common.Constants.*;
 
 /**
  * @author Naeem <naeemark@gmail.com>
@@ -15,6 +14,7 @@ public class Location {
     private double longitude;
     private long epochTimestamp;
     private double speedKmPerHour = -1;
+    private long duration = 0;
 
     public Location(long rideId, double latitude, double longitude, long epochTimestamp) {
         this.rideId = rideId;
@@ -25,6 +25,10 @@ public class Location {
 
     public boolean isValid() {
         return this.getSpeedKmPerHour() >= MIN_KM_PER_HOUR && this.getSpeedKmPerHour() <= ALLOWED_MAX_KM_PER_HOUR;
+    }
+
+    public boolean isIdle() {
+        return this.getSpeedKmPerHour() <= IDLE_KM_PER_HOUR;
     }
 
     @Override
