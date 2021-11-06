@@ -1,17 +1,19 @@
 package org.naeemrk.fcs.services.ingestion;
 
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.naeemrk.fcs.models.Location;
+import org.naeemrk.fcs.models.RideFare;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author Naeem <naeemark@gmail.com>
@@ -49,6 +51,18 @@ public class IngestionServiceImpl implements IngestionService {
             e.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public void write(String filePath, List<RideFare> rideFares) {
+        Path path = Paths.get(filePath);
+        try (final CSVPrinter printer = CSVFormat.RFC4180.withHeader("id_ride", "fare_estimate").print(path, StandardCharsets.UTF_8)) {
+            for (RideFare rideFare : rideFares) {
+                printer.printRecord(rideFare.getRideId(), rideFare.getFareEstimate());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -14,5 +14,7 @@ public class Constants {
 
     public static final double FARE_IDLE_PER_HOUR = 11.90;
     public static final double FARE_MOVING_PER_KM_NORMAL = 0.74;
-    public static final double FARE_MOVING_PER_KM_HIGH = 1.30;
+    public static final double FARE_MOVING_PER_KM_PEEK = 1.30;
+
+    public static final String[] DURATION_PEAK_TIME = {"00:00:00", "05:00:00"};
 }

@@ -13,8 +13,11 @@ public class Location {
     private double latitude;
     private double longitude;
     private long epochTimestamp;
-    private double speedKmPerHour = -1;
-    private long duration = 0;
+
+    // Extra attributes
+    private double distanceInKm;
+    private double speedKmPerHour;
+    private long duration;
 
     public Location(long rideId, double latitude, double longitude, long epochTimestamp) {
         this.rideId = rideId;

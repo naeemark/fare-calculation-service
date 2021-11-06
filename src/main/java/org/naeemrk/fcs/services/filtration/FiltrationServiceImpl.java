@@ -22,9 +22,7 @@ public class FiltrationServiceImpl implements FiltrationService {
             Location currentLocation = locationList.get(i);
             Location lastLocation = locationList.get(i - 1);
 
-            currentLocation.setDuration(currentLocation.getEpochTimestamp() - lastLocation.getEpochTimestamp());
-            setCurrentSpeed(currentLocation, lastLocation);
-
+            setCurrentLocationAttributes(currentLocation, lastLocation);
             if (!currentLocation.isValid()) {
                 locationList.remove(currentLocation);
                 i--; // reduce counter to recalculate for new adjacent locations after removal of an element
@@ -35,14 +33,17 @@ public class FiltrationServiceImpl implements FiltrationService {
     }
 
     @Override
-    public void setCurrentSpeed(Location currentLocation, Location lastLocation) {
+    public void setCurrentLocationAttributes(Location currentLocation, Location lastLocation) {
         double[] current = {currentLocation.getLatitude(), currentLocation.getLongitude()};
         double[] last = {lastLocation.getLatitude(), lastLocation.getLongitude()};
 
+        long duration = currentLocation.getEpochTimestamp() - lastLocation.getEpochTimestamp();
         double distanceInKm = SpeedUtil.haversine(last, current);
-        double kmPerHour = SpeedUtil.calculateSpeed(currentLocation.getDuration(), distanceInKm);
-        logger.info("Current {}, Last {}, km:{} km/h:{}", currentLocation, lastLocation, distanceInKm, kmPerHour);
+        double kmPerHour = SpeedUtil.calculateSpeed(duration, distanceInKm);
 
+        currentLocation.setDuration(duration);
+        currentLocation.setDistanceInKm(distanceInKm);
         currentLocation.setSpeedKmPerHour(kmPerHour);
+        logger.info("Current {}, Last {}, km:{} km/h:{}", currentLocation, lastLocation, distanceInKm, kmPerHour);
     }
 }
