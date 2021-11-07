@@ -22,13 +22,7 @@ public class IngestionServiceImpl implements IngestionService {
 
     @Override
     public List<Location> read(String filePath) {
-
-        // Validates if the file exists
-        File file = new File(filePath);
-        if (!file.exists() || file.isDirectory()) {
-            throw new IllegalArgumentException("Provided file path is not valid: " + filePath);
-        }
-
+        validateFilePath(filePath);
         Path path = Paths.get(filePath);
 
         List<Location> list = Collections.emptyList();
@@ -55,6 +49,7 @@ public class IngestionServiceImpl implements IngestionService {
 
     @Override
     public void write(String filePath, List<RideFare> rideFares) {
+        validateFilePath(filePath);
         Path path = Paths.get(filePath);
         try (final CSVPrinter printer = CSVFormat.RFC4180.withHeader("id_ride", "fare_estimate").print(path, StandardCharsets.UTF_8)) {
             for (RideFare rideFare : rideFares) {
@@ -76,5 +71,17 @@ public class IngestionServiceImpl implements IngestionService {
             map.get(rideId).add(e);
         });
         return new ArrayList<>(map.values());
+    }
+
+    /**
+     * Validates if the file exists
+     *
+     * @param filePath String
+     */
+    private void validateFilePath(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists() || file.isDirectory()) {
+            throw new IllegalArgumentException("Provided file path is not valid: " + filePath);
+        }
     }
 }

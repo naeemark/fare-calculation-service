@@ -11,10 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SpeedUtilTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
     @DisplayName("Calculate Speed: 1km/h")
     void calculateSpeed() {
