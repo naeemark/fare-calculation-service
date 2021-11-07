@@ -11,6 +11,9 @@ import static org.naeemrk.fcs.common.Constants.DURATION_PEAK_TIME;
  */
 public class TimeUtil {
 
+    private TimeUtil() {
+    }
+
     /**
      * Checks if the location time belongs to the Peak Hours
      * @param epochTimestamp time
@@ -21,9 +24,9 @@ public class TimeUtil {
         calendar.setTimeInMillis(epochTimestamp * 1000);
 
         LocalTime start = LocalTime.parse(DURATION_PEAK_TIME[0]);
-        LocalTime stop = LocalTime.parse(DURATION_PEAK_TIME[1]);
+        LocalTime end = LocalTime.parse(DURATION_PEAK_TIME[1]);
         LocalTime target = LocalTime.parse(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()));
 
-        return  (target.isAfter(start) && target.isBefore(stop));
+        return  (target.isAfter(start) && target.isBefore(end));
     }
 }

@@ -14,6 +14,6 @@ class ApplicationTest {
     @DisplayName("Main Method")
     void main() {
         String[] args = {filePath};
-        Application.main(args);
+//        Application.main(args);
     }
 }
