@@ -5,8 +5,6 @@ import lombok.Data;
 
 import java.text.DecimalFormat;
 
-import static org.naeemrk.fcs.common.Constants.*;
-
 /**
  * @author Naeem <naeemark@gmail.com>
  */

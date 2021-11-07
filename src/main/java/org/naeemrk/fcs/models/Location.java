@@ -1,5 +1,6 @@
 package org.naeemrk.fcs.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import static org.naeemrk.fcs.common.Constants.*;
@@ -8,6 +9,7 @@ import static org.naeemrk.fcs.common.Constants.*;
  * @author Naeem <naeemark@gmail.com>
  */
 @Data
+@AllArgsConstructor
 public class Location {
     private long rideId;
     private double latitude;

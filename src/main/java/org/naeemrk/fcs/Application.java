@@ -44,9 +44,9 @@ public class Application {
         rideLists.forEach(e -> summary.put(e.get(0).getRideId(), summary.get(e.get(0).getRideId()) + "," + e.size()));
 
         // Logging summary
-        for (Long key : summary.keySet()) {
-            String[] strings = summary.get(key).split(",");
-            logger.info("RideId: {}, Initial Size: {}, Sanitized Size: {}", key, Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
+        for (Map.Entry<Long, String> entry : summary.entrySet()) {
+            String[] strings = entry.getValue().split(",");
+            logger.info("RideId: {}, Initial Size: {}, Sanitized Size: {}", entry.getKey(), Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
         }
 
         CalculationService calculationService = new CalculationServiceImpl();
