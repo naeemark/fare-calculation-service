@@ -1,16 +1,17 @@
 package org.naeemrk.fcs.utils;
 
-import java.text.DecimalFormat;
-
 /**
  * @author Naeem <naeemark@gmail.com>
  */
 public class SpeedUtil {
 
+    private SpeedUtil() {
+    }
+
     /**
      * Calculates km/hour
      *
-     * @param duration Seconds
+     * @param duration     Seconds
      * @param distanceInKm for current Location Object
      * @return km/h
      */
@@ -23,7 +24,7 @@ public class SpeedUtil {
      * Calculates and returns distance between to pairs of Latitude and longitude in KM
      *
      * @param from Pair of latitude, longitude
-     * @param to Pair of latitude, longitude
+     * @param to   Pair of latitude, longitude
      * @return double
      */
     public static double haversine(double[] from, double[] to) {
