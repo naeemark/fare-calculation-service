@@ -32,7 +32,11 @@ public class FiltrationServiceImpl implements FiltrationService {
         logger.debug("done with: " + locationList.get(0).getRideId() + " - Size:" + locationList.size() + "\n");
     }
 
-    @Override
+    /**
+     * Adds extra attributes to model to avoid re-calculations
+     * @param currentLocation Model
+     * @param lastLocation Model
+     */
     public void setCurrentLocationAttributes(Location currentLocation, Location lastLocation) {
         double[] current = {currentLocation.getLatitude(), currentLocation.getLongitude()};
         double[] last = {lastLocation.getLatitude(), lastLocation.getLongitude()};
