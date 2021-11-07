@@ -26,4 +26,11 @@ class TimeUtilTest {
         boolean peekTime = TimeUtil.isPeekTime(1636286859);
         assertFalse(peekTime);
     }
+
+    @Test
+    @DisplayName("isPeakTime: No")
+    void isPeekTime_false_b() {
+        boolean peekTime = TimeUtil.isPeekTime(1636214400);
+        assertFalse(peekTime);
+    }
 }
