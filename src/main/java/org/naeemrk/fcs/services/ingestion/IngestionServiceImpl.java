@@ -3,6 +3,8 @@ package org.naeemrk.fcs.services.ingestion;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.naeemrk.fcs.models.Location;
 import org.naeemrk.fcs.models.RideFare;
 
@@ -19,6 +21,8 @@ import java.util.*;
  * @author Naeem <naeemark@gmail.com>
  */
 public class IngestionServiceImpl implements IngestionService {
+
+    private static final Logger logger = LogManager.getLogger(IngestionServiceImpl.class);
 
     @Override
     public List<Location> read(String filePath) {
@@ -42,7 +46,7 @@ public class IngestionServiceImpl implements IngestionService {
                 list.add(person);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return list;
     }
@@ -56,7 +60,7 @@ public class IngestionServiceImpl implements IngestionService {
                 printer.printRecord(rideFare.getRideId(), rideFare.getFareEstimate());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 

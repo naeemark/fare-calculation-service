@@ -25,11 +25,11 @@ public class FiltrationServiceImpl implements FiltrationService {
             setCurrentLocationAttributes(currentLocation, lastLocation);
             if (!currentLocation.isValid()) {
                 locationList.remove(currentLocation);
-                i--; // reduce counter to recalculate for new adjacent locations after removal of an element
-                logger.debug("Removed: " + currentLocation + " - Current Size:" + locationList.size());
+                i-=1; // reduce counter to recalculate for new adjacent locations after removal of an element
+                logger.debug("Removed: {} - Current Size: {}" , currentLocation, locationList.size());
             }
         }
-        logger.debug("done with: " + locationList.get(0).getRideId() + " - Size:" + locationList.size() + "\n");
+        logger.debug("Done rideId: {} - Size: {} \n" ,locationList.get(0).getRideId(), locationList.size());
     }
 
     /**
