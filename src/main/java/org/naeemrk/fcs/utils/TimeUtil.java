@@ -28,7 +28,6 @@ public class TimeUtil {
         LocalTime end = LocalTime.parse(DURATION_PEAK_TIME[1]);
         LocalTime target = LocalTime.parse(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()));
 
-        System.out.println(target.isAfter(start) + " - " + target.isBefore(end));
         return (target.isAfter(start) && target.isBefore(end));
     }
 }
