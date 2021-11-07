@@ -16,6 +16,7 @@ public class TimeUtil {
 
     /**
      * Checks if the location time belongs to the Peak Hours
+     *
      * @param epochTimestamp time
      * @return boolean
      */
@@ -27,6 +28,7 @@ public class TimeUtil {
         LocalTime end = LocalTime.parse(DURATION_PEAK_TIME[1]);
         LocalTime target = LocalTime.parse(new SimpleDateFormat("HH:mm:ss").format(calendar.getTime()));
 
-        return  (target.isAfter(start) && target.isBefore(end));
+        System.out.println(target.isAfter(start) + " - " + target.isBefore(end));
+        return (target.isAfter(start) && target.isBefore(end));
     }
 }
